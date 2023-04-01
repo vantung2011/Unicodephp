@@ -14,3 +14,4 @@ $insert = $db2->table('users')->create([
    'email' => 'gmail@gmail.com',
 ])->add();
 echo $insert;
+//

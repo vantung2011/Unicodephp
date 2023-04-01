@@ -27,3 +27,4 @@ class Database  extends Connect{
     return $statement->fetchAll(PDO::FETCH_ASSOC);
   }
 }
+//

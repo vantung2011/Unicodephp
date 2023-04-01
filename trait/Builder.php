@@ -1,6 +1,20 @@
 <?php
 trait Builder
 {
+  public function query($sql)
+  {
+    $status  = null;
+    $statement = null;
+    try {
+      $statement = $this->conn->prepare($sql);
+      $status = $statement->execute();
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+      require 'error.php';
+      die();
+    }
+    return $statement;
+  }
   private $table,$select = array(),$where = '';
   public function table($table)
   {
@@ -42,7 +56,7 @@ trait Builder
   }
   public function add()
   {
-    $sql1 = 'INSERT INTO ' .$this->table .'('.implode(',',$this->create).') VALUES (:' . implode(',:',$this->create).')';
-    return $sql1;
+    $sql = 'INSERT INTO ' .$this->table .'('.implode(',',$this->create).') VALUES (:' . implode(',:',$this->create).')';
+    return $sql;
   }
 }

@@ -6,10 +6,6 @@ $sql = $db->table('users')
           ->select('*')
           ->get();
 echo $sql;
-$getData = $db->getData($sql);
-echo '<pre>';
-print_r($getData);
-echo '</pre>';
 echo '<br>';
 $db2 = new Database();
 $insert = $db2->table('users')->create([

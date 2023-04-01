@@ -3,10 +3,13 @@ require('trait/Builder.php');
 require('class/function.php');
 $db = new Database();
 $sql = $db->table('users')
-          ->select('id, name, email')
-          ->where('id', ' = ', '? ')->where(' email', ' = ', '? ')
+          ->select('*')
           ->get();
 echo $sql;
+$getData = $db->getData($sql);
+echo '<pre>';
+print_r($getData);
+echo '</pre>';
 echo '<br>';
 $db2 = new Database();
 $insert = $db2->table('users')->create([
@@ -15,4 +18,3 @@ $insert = $db2->table('users')->create([
    'email' => 'gmail@gmail.com',
 ])->add();
 echo $insert;
-
